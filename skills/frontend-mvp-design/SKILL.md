@@ -37,8 +37,7 @@ description: |
 **等待用户回复后：**
 - 记录用户选择的图标库
 - 确认用户选择（例如："好的，您选择了 Lucide 图标库。"）
-- **明确询问**："现在进入步骤 2：选择视觉风格 Design Prompt，您准备好了吗？"
-- **只有在用户明确同意后，才进入步骤 2**
+- **进入步骤 2**
 
 ---
 
@@ -50,30 +49,52 @@ description: |
 
 **请选择视觉风格（输入数字或描述您的想法）：**
 
-| 编号 | 类别 | Prompt 示例 |
-|------|------|-------------|
-| 1 | **极简主义** | Minimalist design with clean lines, generous whitespace, monochrome palette |
-| 2 | **玻璃拟态** | Glassmorphism style with frosted glass effects, subtle shadows, vibrant gradients |
-| 3 | **新拟态** | Neumorphism with soft shadows, extruded elements, light color scheme |
-| 4 | **深色模式** | Dark mode with high contrast, accent colors, OLED-friendly deep blacks |
-| 5 | **复古风格** | Retro design with vintage color palettes, serif typography, textured backgrounds |
-| 6 | **赛博朋克** | Cyberpunk aesthetic with neon accents, dark backgrounds, futuristic elements |
-| 7 | **自然/有机** | Organic design with natural shapes, earthy colors, flowing curves |
-| 8 | **企业/商务** | Corporate design with professional blues, clean grids, authoritative typography |
-| 9 | **卡片式** | Card-based layout with subtle shadows, rounded corners, clear hierarchy |
-| 10 | **杂志风** | Editorial style with bold typography, asymmetric layouts, high-quality imagery |
-| 11 | **自定义** | 描述您的设计愿景，我来生成对应 prompt |
+| 编号  | 类别        | Prompt 示例                                 | 操作                                                 |
+| --- | --------- | ----------------------------------------- | -------------------------------------------------- |
+| 1   | **极简主义**  | Minimalist design with clean lines...     | [查看完整](references/design-prompts/minimalist.md)    |
+| 2   | **玻璃拟态**  | Glassmorphism style with frosted glass... | [查看完整](references/design-prompts/glassmorphism.md) |
+| 3   | **新拟态**   | Neumorphism with soft shadows...          | [查看完整](references/design-prompts/neumorphism.md)   |
+| 4   | **深色模式**  | Dark mode with high contrast...           | [查看完整](references/design-prompts/dark-mode.md)     |
+| 5   | **复古风格**  | Retro design with vintage color...        | [查看完整](references/design-prompts/retro.md)         |
+| 6   | **赛博朋克**  | Cyberpunk aesthetic with neon...          | [查看完整](references/design-prompts/cyberpunk.md)     |
+| 7   | **自然/有机** | Organic design with natural shapes...     | [查看完整](references/design-prompts/organic.md)       |
+| 8   | **企业/商务** | Corporate design with professional...     | [查看完整](references/design-prompts/corporate.md)     |
+| 9   | **卡片式**   | Card-based layout with subtle...          | [查看完整](references/design-prompts/card-based.md)    |
+| 10  | **杂志风**   | Editorial style with bold typography...   | [查看完整](references/design-prompts/editorial.md)     |
+| 11  | **自定义**   | 描述您的设计愿景，我来生成对应 prompt                    | -                                                  |
 
 **附加选项：**
+- 输入 `detail N`（如 `detail 1`）查看编号 N 的完整 design prompt
 - 输入 "more" 查看更多设计风格参考
 - 访问 https://www.designprompts.dev/ 查看 31+ 种设计风格
 
 **等待用户回复后：**
-- 记录用户选择的视觉风格
-- 确认用户选择（例如："好的，您选择了极简主义风格。"）
-- 整理已收集的信息：图标库选择 + 设计 prompt
-- **明确询问**："现在进入步骤 3：进行深入的设计探索（Brainstorming），您准备好了吗？"
-- **只有在用户明确同意后，才进入步骤 3**
+- **如果用户输入 `detail N`**：按编号读取对应文件并展示完整 prompt：
+  - `detail 1` → 读取 `references/design-prompts/minimalist.md`
+  - `detail 2` → 读取 `references/design-prompts/glassmorphism.md`
+  - `detail 3` → 读取 `references/design-prompts/neumorphism.md`
+  - `detail 4` → 读取 `references/design-prompts/dark-mode.md`
+  - `detail 5` → 读取 `references/design-prompts/retro.md`
+  - `detail 6` → 读取 `references/design-prompts/cyberpunk.md`
+  - `detail 7` → 读取 `references/design-prompts/organic.md`
+  - `detail 8` → 读取 `references/design-prompts/corporate.md`
+  - `detail 9` → 读取 `references/design-prompts/card-based.md`
+  - `detail 10` → 读取 `references/design-prompts/editorial.md`
+- **如果用户选择 1-10**：记录该选择，同时**读取**对应文件中的完整 design prompt 备用
+  - 确认用户选择（例如："好的，您选择了极简主义风格。"）
+  - **进入步骤 3**
+- **如果用户选择 11（自定义）**：
+  1. 请用户描述设计愿景
+  2. 用户输入后，**询问用户**："您是否希望维持原输入内容？输入 `yes` 直接使用，或输入 `no` 让我帮您扩写为更具体且可编程的风格。"
+  3. **如果用户输入 `yes` 或同意维持原输入**：
+     - 记录用户输入的内容作为 design prompt
+     - 确认用户选择："好的，将使用您输入的自定义 design prompt。"
+     - **进入步骤 3**
+  4. **如果用户输入 `no` 或希望扩写**：
+     - 基于用户输入的设计愿景，**理解并扩写**为具体且可编程的风格描述（包含：色彩方案、排版系统、间距系统、组件风格、动画效果等技术实现细节）
+     - 向用户展示扩写后的 design prompt
+     - **明确询问**："请确认以上扩写内容是否符合您的预期？确认后我们将进入步骤 3。"
+     - **只有获得用户明确确认后，才进入步骤 3**
 
 ---
 
@@ -89,7 +110,33 @@ description: |
 整理已收集的所有信息：
 - 图标库选择：[步骤 1 的结果]
 - 设计 prompt / 视觉风格方向：[步骤 2 的结果]
+- **完整 design prompt**：[如果用户选择 1-10 号内置风格，从 `references/design-prompts/` 目录下对应文件读取完整 prompt；如果是自定义风格，使用生成的 prompt]
 - 用户需求背景（如有）
+
+**调用 Brainstorming 时的输入格式：**
+
+```
+请基于以下信息进行设计探索：
+
+## 图标库
+[步骤1选择的图标库]
+
+## 视觉风格
+[步骤2选择的风格名称]
+
+## 完整 Design Prompt
+[从 references/design-prompts/对应文件.md 读取的完整 prompt，或用户自定义的 prompt]
+
+## 项目背景
+[用户提供的需求背景]
+
+请深入探讨：
+1. 基于此 design prompt 的视觉风格具体化
+2. 组件结构建议
+3. 交互状态设计
+4. 响应式策略
+5. 技术实现要点
+```
 
 **Brainstorming 时要探讨的内容：**
 1. 基于 design prompt 的视觉风格具体化
